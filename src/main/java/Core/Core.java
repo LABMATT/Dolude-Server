@@ -5,21 +5,24 @@ import socketManger.SocketManger;
 import sqlManger.PStatment;
 
 import java.net.InetSocketAddress;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.ResultSet;
-import java.sql.Statement;
+import java.sql.*;
 
 public class Core {
 
     public static void main(String[] args) {
         System.out.println("LABMATT DOLUDE SERVER SYSTEMS");
 
-        String host = "localhost";
+        // The server adress the websocket server and port are going to be hosted on.
+        String host = "192.168.1.108";
         int port = 8080;
 
-        new PStatment().getQury();
+        try {
+            new PStatment().getQury("SELECT * FROM dolude.active;");
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
 
+        // Starts the websocket server for connections.
         WebSocketServer server = new SocketManger(new InetSocketAddress(host, port));
         server.run();
 
