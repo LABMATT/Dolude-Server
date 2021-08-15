@@ -3,6 +3,7 @@ package socketManger;
 //https://github.com/TooTallNate/Java-WebSocket/wiki#server-example
 //https://github.com/TooTallNate/Java-WebSocket
 
+import MessageManger.Message;
 import org.java_websocket.WebSocket;
 import org.java_websocket.handshake.ClientHandshake;
 import org.java_websocket.server.WebSocketServer;
@@ -53,6 +54,8 @@ public class SocketManger extends WebSocketServer {
     public void onMessage(WebSocket conn, String message) {
         System.out.println("received message from "	+ conn.getRemoteSocketAddress() + ": " + message);
 
+        Message messagethread = new Message();
+        messagethread.start();
     }
 
     @Override
