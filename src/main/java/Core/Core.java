@@ -13,7 +13,7 @@ public class Core {
         System.out.println("LABMATT DOLUDE SERVER SYSTEMS");
 
         // The server adress the websocket server and port are going to be hosted on.
-        String host = "192.168.1.108";
+        String host = "localhost";
         int port = 8080;
 
         try {

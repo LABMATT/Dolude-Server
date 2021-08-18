@@ -52,9 +52,10 @@ public class SocketManger extends WebSocketServer {
 
     @Override
     public void onMessage(WebSocket conn, String message) {
-        System.out.println("received message from "	+ conn.getRemoteSocketAddress() + ": " + message);
+        //System.out.println("received message from "	+ conn.getRemoteSocketAddress() + ": " + message);
+        System.out.println("ready for thread");
 
-        Message messagethread = new Message();
+        Thread messagethread = new Thread( new Message(message, conn));
         messagethread.start();
     }
 
