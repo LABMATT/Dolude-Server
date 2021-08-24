@@ -1,5 +1,8 @@
 package MessageManger;
 
+import DoludeManger.HostSession;
+import DoludeManger.JoinSession;
+import DoludeManger.RegisterSession;
 import org.java_websocket.WebSocket;
 
 public class Message implements Runnable {
@@ -31,6 +34,12 @@ public class Message implements Runnable {
                 prefix = new Sanitizer().sanitize(prefix, 20);
                 sufix = new Sanitizer().sanitize(sufix, 20);
 
+                switch (prefix) {
+                    case "register" -> new RegisterSession();
+                    case "host" -> new HostSession();
+                    case "join" -> new JoinSession();
+                    default -> connection.send(prefix + " invalid.");
+                }
 
             } catch (Exception e) {
                 connection.send(prefix + ": Input unsuitable for use <" + e.getMessage() + ">");
